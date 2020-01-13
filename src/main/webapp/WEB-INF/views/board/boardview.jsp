@@ -208,35 +208,39 @@ textarea.autosize { min-height: 50px; }
 		        	        	html += "<button class='orange_btn' type='button' style='width:80px;'" + "id='commentdel' onclick='commentdel("+data[i].commentnum+");'>삭제</button></div>";
 								html += "<hr class='content-boardView-comment-item-4' style='color: white; width: 100%; border: solid;''>"
 							}else{
-									html += "<tr>"
 									html += "<input type='hidden' id='commentNum' name='commentNum' readonly='readonly' value='"+data[i].commentnum+"'>";
-									html += "<td scope='row'><input type='text' id='LicommentId' style='width: 170px; background-color: #d2d2d2fc;' class='white_textbox' name='commentId' readonly='readonly' value='"+data[i].commentId+"'></td>";
-									html += "<td><input type='text' id='Licommentation' style='width:800px; background-color: #d2d2d2fc;' name='commentation' class='white_textbox' readonly='readonly' value='[비밀댓글입니다.]'></td>";
-									html += "<td><span style='color:white; margin-left: 5px; margin-right: 5px;'>"+data[i].regdate+"</span></td>";
-									html += "</tr>"
+									html += "<div class='content-boardView-comment-item-1'><input type='text' id='LicommentId' style='width: 170px;' class='comment-textbox' name='commentId' readonly='readonly' value='"+data[i].commentId+"'></div>";
+									html += "<div class='content-boardView-comment-item-2'><textarea rows='3' cols='30' id='Licommentation' style='width:100%; background-color: #d2d2d2fc;' name='commentation' readonly='readonly' class='comment_textbox autosize' onkeydown='resize(this)' onkeyup='resize(this)'>"+'[비밀댓글]'+ "</textarea></div>";
+									html += "<div class='content-boardView-comment-item-3'><span style='color:white; margin-left: 5px; margin-right: 5px;'>"+data[i].regdate+"</span></div>";
+									html += "<hr class='content-boardView-comment-item-4' style='color: white; width: 100%; border: solid;''>"
+
 							}
 						}else{
-								html += "<tr>"
 								html += "<input type='hidden' id='commentNum' name='commentNum' readonly='readonly' value='"+data[i].commentnum+"'>";
-								html += "<td scope='row'><input type='text' id='LicommentId' style='width: 170px; background-color: #d2d2d2fc;' class='white_textbox' name='commentId' readonly='readonly' value='"+data[i].commentId+"'></td>";
-								html += "<td><input type='text' id='Licommentation' style='width:800px; background-color: #d2d2d2fc;'name='commentation' class='white_textbox' readonly='readonly' value='"+data[i].commentation+"'></td>";
-								html += "<td><span style='color:white; margin-left: 5px; margin-right: 5px;'>"+data[i].regdate+"</span></td>";
+								html += "<div class='content-boardView-comment-item-1'><input type='text' id='LicommentId' style='width: 170px;' class='comment-textbox' name='commentId' readonly='readonly' value='"+data[i].commentId+"'></div>";
+								html += "<div class='content-boardView-comment-item-2'><textarea rows='3' cols='30' id='Licommentation' style='width:100%; background-color: #d2d2d2fc;' name='commentation' readonly='readonly' class='comment_textbox autosize' onkeydown='resize(this)' onkeyup='resize(this)'>"+ data[i].commentation + "</textarea></div>";
+								html += "<div class='content-boardView-comment-item-3'><span style='color:white; margin-left: 5px; margin-right: 5px;'>"+data[i].regdate+"</span>";
 								if(data[i].commentId != user){
-								html += "<td><button class='orange_btn' type='button' style='width:80px; margin-right: 0.5%;'" +
-	        					"id='commentmodifyok' onclick='modifychange(this, "+data[i].commentnum+");'>수정</button>";
-	        					html += "<button class='orange_btn' type='button' style='width:80px;'" +
-	        					"id='commentdel' onclick='commentdel("+data[i].commentnum+");'>삭제</button></td>";
+									if(admin > 0) {
+										html += "<button class='orange_btn' type='button' style='width:80px; margin-right: 0.5%;'" +
+			        					"id='commentmodifyok' onclick='modifychange(this, "+data[i].commentnum+");'>수정</button>";
+			        					html += "<button class='orange_btn' type='button' style='width:80px;'" +
+			        					"id='commentdel' onclick='commentdel("+data[i].commentnum+");'>삭제</button></div>";
+			        					html += "<hr class='content-boardView-comment-item-4' style='color: white; width: 100%; border: solid;''>"
+									}else {
+										html += "</div><hr class='content-boardView-comment-item-4' style='color: white; width: 100%; border: solid;''>"
+									}
 								}
 								
 								if(data[i].commentId == user){									
-								html += "<td><button class='orange_btn' type='button' style='width:80px; margin-right: 0.5%;'" +
+								html += "<button class='orange_btn' type='button' style='width:80px; margin-right: 0.5%;'" +
         	        					"id='commentmodifyok' onclick='modifychange(this, "+data[i].commentnum+");'>수정</button>";
         	        			html += "<button class='orange_btn' type='button' style='width:80px;'" +
-        	        					"id='commentdel' onclick='commentdel("+data[i].commentnum+");'>삭제</button></td>";
+        	        					"id='commentdel' onclick='commentdel("+data[i].commentnum+");'>삭제</button></div>";
+	        					html += "<hr class='content-boardView-comment-item-4' style='color: white; width: 100%; border: solid;''>"
 								}
-								html += "</tr>"
 							}
-							}
+					}
 					html += "</div>"
 				}else{
 					html += "<div>";
