@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.health.mybatis.myMapper">
+  
+  	<select id="loginCheck" resultType="Udto">
+  		select * from UserDB where userId=#{id}
+  	</select>
+  	
+  	<select id="idCheck" resultType="Udto">
+  		select userid from UserDB
+  	</select>
+  	
+  	<select id="idPormCheck" resultType="Udao">
+  		select userid from UserDB
+  	</select>
+  	
+  	<insert id="joinCheck" parameterType="Udto">
+        insert into userDB (userId, userPw, userName, userEmail, userRegDate, Admin, userAge, userHeight, userWeight, userSex) values(#{userId},#{userPw},#{userName},#{userEmail},#{userRegDate},#{Admin},#{userAge}, #{userHeight}, #{userWeight}, #{userSex})
+     </insert>
+     
+     <update id="userInfoModify" parameterType="Udto">
+     	update userDB set userPw=#{userPw}, userName=#{userName}, userEmail=#{userEmail} where userId=#{userId} 
+	  </update>
+     <update id="modifyCheck" parameterType="Udto">
+     	update userDB set userPw=#{userPw},userEmail=#{userEmail},userName=#{userName} where userId=#{userId}
+     </update>
+     
+     <delete id="delsuccess" parameterType="String">
+     	delete from userDB where userId=#{id} 
+     </delete>
+     
+   	<select id="userList" parameterType="Pdto" resultType="Udto">
+  		select B.* from(select rownum rn, A.* from (select * from userDB where admin=0 order by userRegDate desc)A)B where rn between #{startPage} and #{endPage}
+  	</select>
+  	
+  	<select id="trainerList" parameterType="Pdto" resultType="Udto">
+  		select B.* from(select rownum rn, A.* from (select * from userDB where admin=2 order by userRegDate desc)A)B where rn between #{startPage} and #{endPage}
+  	</select>
+  	
+  	<select id="getTotalPage_user" resultType="int">
+  		select count(*) from userDB where admin=0
+  	</select>
+  	
+  	<select id="getTotalPage_trainer" resultType="int">
+  		select count(*) from userDB where admin=2
+  	</select>
+  	
+  	<select id="userInfo" resultType="Udto">
+  		select * from userDB where userId=#{id}
+  	</select>
+   
+  	<!-- 락카  -->
+  	<select id="lockerList" resultType="Ldto">
+  		select * from lockerDB order by lockerNum asc
+  	</select>
+  	
+  	<select id="lockerMemberInfo" resultType="Ldao">
+  		select * from lockerDB where lockerNum=#{num}
+  	</select>
+ 
+   	<update id="lockerJoin" parameterType="Ldto">
+        update lockerDB set lockerNum=#{lockerNum}, lockerName=#{lockerName}, lockerStartDate=#{lockerStartDate}, lockerEndDate=#{lockerEndDate}, lockerCheck= #{lockerCheck} where lockerNum=#{lockerNum}
+     </update>
+     
+	<select id="lockerCheck" resultType="int">
+  		select lockerCheck from lockerDB where lockerNum=#{lockerNum}
+  	</select>
+  	
+  	<select id="lockerRegiOkMember" resultType="Ldto">
+  		select * from lockerDB where lockerNum=#{lockerNum}
+  	</select>
+  	
+  	<select id="pwchk" resultType="String">
+  		select userPw from UserDB where userId=#{id}
+  	</select>
+  	
+  	<select id="idDuplicateChk" resultType="String">
+  		select userId from UserDB where userId=#{rid}
+  	</select>
+  	
+   	<update id="lockerModify" parameterType="Ldto">
+        update lockerDB set lockerNum=#{lockerNum}, lockerName=#{lockerName}, lockerStartDate=#{lockerStartDate}, lockerEndDate=#{lockerEndDate} where lockerNum=#{lockerNum}
+    </update>
+     
+    <update id="lockerDelete" parameterType="Ldto">
+    	update lockerDB set lockerNum=#{lockerNum}, lockerName=#{lockerName}, lockerStartDate=#{lockerStartDate}, lockerEndDate=#{lockerEndDate}, lockerCheck= #{lockerCheck} where lockerNum=#{lockerNum}
+    </update>
+
+		<!--  ==================티켓 쿼리=================================== -->
+  	
+  	<select id="ticketList" resultType="Tdto">
+  		select * from ticketDB order by ticketDuration asc
+  	</select>
+  	
+  	<select id="myTicketlist" resultType="TBdto">
+  		select * from ticketBuyerDB where ticketbuyerid=#{id}
+  	</select>
+
+  	<select id="ticketYesorNo" resultType="TBdto">
+  		select * from ticketBuyerDB where ticketbuyerid=#{id}
+  	</select>
+  	
+  	<insert id="registerTicket" parameterType="TBdto">
+  		insert into ticketBuyerDB (ticketBuyerName, ticketBuyerID, ticketstartdate, ticketenddate, ticketprice, ticketduration) values(#{ticketBuyerName},#{ticketBuyerId},#{ticketStartDate},#{ticketEndDate},#{ticketPrice},#{ticketDuration}) 
+  	</insert>
+  	
+  	<select id="checkTicketValid" resultType="TBdto" parameterType="String">
+  		select * from(select ticketenddate from ticketbuyerdb where ticketbuyerid=#{id} order by ticketEndDate desc) where rownum=1
+  	</select>
+
+    <update id="ticketValidOff" parameterType="String">
+     	update userDB set Ticket=0 where userId=#{id}
+    </update>
+    
+    <update id="updateTicket" parameterType="String">
+     	update userDB set Ticket=1 where userId=#{id}
+	</update>
+	
+	<!--  ==================운동법 페이지=================================== -->  	
+	<select id="exlist" resultType="Edto">
+		select * from exBoard order by num desc
+	</select>
+	
+	<insert id="exboardwrite" parameterType="Edto">
+		insert into exBoard(name,title,content,savedate,part,num,link) values(#{name},#{title},#{content},sysdate,#{part},(SELECT NVL(MAX(num),0)+1 FROM exBoard),#{link})
+	</insert>
+
+
+	<select id="exBoardContent" resultType="Edto">
+		select * from exBoard where num=#{num}
+	</select>
+
+	<delete id="exboarddelete" parameterType="Edto">
+	delete from exBoard where num=#{num}
+	</delete>
+	
+	<update id="exboardmodify" parameterType="Edto">
+	update exBoard set title=#{title}, content=#{content}, link=#{link},part=#{part} where num=#{num}
+	</update>
+	 
+    <!-- ==============게시판============== -->
+	<select id="boardList" parameterType="Pdto" resultType="Bdto">
+  		 select B.* from(select rownum rn, A.* from (select * from board order by num desc)A)B where rn between #{startPage} and #{endPage}
+  	</select>
+	
+	<select id="boardsearch" resultType="Bdto" parameterType="map">
+  		select * from board where ${title} like '%'||#{content}||'%' order by num desc
+  	</select>
+  	
+  	<select id="boardview" resultType="Bdto">
+  		select * from board where num=#{num}
+  	</select>
+
+  	<update id="hitup" parameterType="int">
+  		update board set hit=hit+1 where num=#{num}
+  	</update>
+  	
+  	<insert id="boardcontentup" parameterType="Bdto">
+        insert into board (num, hit, secret, title, name, content, postdate) values(board_seq.nextval, 0, #{secret}, #{title}, #{name}, #{content}, sysdate)
+    </insert>
+    
+    <delete id="boardcontentdel" parameterType="int">
+     	delete from board where num=#{num} 
+    </delete>
+    
+    <update id="boardmodifychk" parameterType="Bdto">
+     	update board set content=#{content} where num=#{num}
+    </update>
+    
+    <select id="boardgetTotalPage" resultType="int">
+      select count(*) from board
+    </select>
+     	
+     	<!--  ===================게시판 댓글 ======================= -->
+    <insert id="commentregister" parameterType="Cdto">
+        insert into commentDB (boardnum, commentid, commentation, regdate, commentsecret, commentnum) values(#{boardnum},#{commentId},#{commentation},sysdate, #{commentsecret}, count_Cnum.nextval)
+    </insert> 	
+     	    	
+    <select id="commentlist" resultType="Cdto">
+    	select * from commentDB where boardnum=#{num}
+    </select>	
+    
+    <update id="commentmodifychk" parameterType="Cdto">
+     	update commentDB set commentation=#{commentation},regdate=sysdate where commentnum=#{commentnum}
+    </update>
+    
+    <delete id="commentdel" parameterType="int">
+     	delete from commentDB where commentnum=#{delnum} 
+    </delete>  	
+
+
+	
+  </mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+<!-- catcheEnabled =>  default값은 true이다. 아래와 같이 false 설정을 하면 모든 mapper xml의 cache 선언이 무효화가 됨 -->
+    
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+    </settings>
+  	<typeAliases>
+  		<typeAlias type="com.health.dto.userDTO" alias="Udto" />
+  		<typeAlias type="com.health.dao.userDAO" alias="Udao" />
+  		
+  		<typeAlias type="com.health.dao.lockerDAO" alias="Ldao" />
+  		<typeAlias type="com.health.dto.lockerDTO" alias="Ldto" />
+  		
+  		<typeAlias type="com.health.dto.ticketDTO" alias="Tdto" />
+  		<typeAlias type="com.health.dao.ticketDAO" alias="Tdao" />
+
+		<typeAlias type="com.health.dto.exBoardDTO" alias="Edto" />
+		<typeAlias type="com.health.dao.exBoardDAO" alias="Edao" />
+		
+		<typeAlias type="com.health.dto.boardpagingDTO" alias="Pdto" />
+  		
+  		<typeAlias type="com.health.dto.ticketDTO" alias="Tdto" />
+  		<typeAlias type="com.health.dao.ticketDAO" alias="Tdao" />
+  		
+  		<typeAlias type="com.health.dto.ticketBuyerDTO" alias="TBdto" />
+  		
+  		<typeAlias type="com.health.dto.boardDTO" alias="Bdto" />
+  		<typeAlias type="com.health.dao.boardDAO" alias="Bdao" />
+  		
+  		<typeAlias type="com.health.dto.commentDTO" alias="Cdto" />
+  		<typeAlias type="com.health.dao.commentDAO" alias="Cdao" />
+		
+		
+		
+  	</typeAliases>
+  </configuration>

@@ -1,0 +1,107 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String userSessionName = (String) session.getAttribute("user_name");
+	String userSessionId = (String) session.getAttribute("user_id");
+%>
+
+<style>
+@FONT-FACE {
+	font-family: 'Dohyun';
+	src: url(resources/static/font/Dohyun.ttf)
+}
+.nav-link-color, .nav-link-dropdown {
+	font-family: dohyun;
+}
+.nav-link-color:hover {
+	color: #ff6000 !important;
+}
+.nav-link-dropcolor:hover {
+	background-color: #ff6000 !important;
+	color: white !important;
+}
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgb(255, 96, 0) !important;
+}
+</style>
+<script type="text/javascript">
+	function logoutCheck(){
+		if(confirm("로그아웃 하시겠습니까?"))
+		 {
+		    location.href="logout";
+			alert('로그아웃 되었습니다.');
+		 }
+		 else
+		 {
+			alert('취소되었습니다.');
+		 }
+	}
+</script>
+<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#0000!important; margin-bottom: 70px; margin-top: 30px;">
+		<img class="img-fluid" src="resources/static/img/logo-btn.png" alt=" "/>
+           <span><a class="navbar-brand nav-link-color" href="index">HOU GYM</a></span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+			aria-expanded="false" aria-label="Toggle navigation" style="background-color: rgb(255, 96, 0);">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+					<c:choose>
+						<c:when test="${user_name == null }">
+						<li class="nav-item-login">
+							<button type="button" class="btn btn-primary" onclick="return location.href='login'" style="background-color: #ff6000; border-color: #ff6000; font-family: dohyun;">로그인</button>
+						</li>
+						</c:when>
+						<c:otherwise>
+							<li class="nav-item-loginok">
+							<h6 class="nav-link" style="font-family: dohyun; color:white;">${user_name}님 환영합니다</h6>
+							</li>
+							<li class="nav-item-login">
+							<button type="button" class="btn btn-primary" onclick="logoutCheck()" style="background-color: #ff6000; border-color: #ff6000; font-family: dohyun;">로그아웃</button>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				<li class="nav-item">
+					<a class="nav-link nav-link-color" href="index">메인페이지</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link nav-link-color" href="ex">운동법</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle nav-link-color" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">예약</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item nav-link-dropcolor nav-link-dropdown" href="ticketView">회원권 예약</a>
+						<a class="dropdown-item nav-link-dropcolor nav-link-dropdown" href="lockerView">락커 예약</a> 
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link nav-link-color" href="board">게시판</a>
+				</li>
+				<li class="nav-item dropdown">
+					<c:choose>
+						<c:when test="${Admin eq 1 }">
+							<a class="nav-link dropdown-toggle nav-link-color" href="mypagechk" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">직원/회원관리</a>
+						</c:when>
+						<c:when test="${Admin eq 0 or Admin eq 2 }">
+							<a class="nav-link dropdown-toggle nav-link-color" href="mypagechk" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >마이페이지</a>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item nav-link-dropcolor nav-link-dropdown" href="mypagechk">회원정보</a>
+						<a class="dropdown-item nav-link-dropcolor nav-link-dropdown" href="myTicket">내 회원권 보기</a>
+						<a class="dropdown-item nav-link-dropcolor nav-link-dropdown" href="searchchk?searchtype=name&value=${sessionScope.user_id}">내 질문 보기</a>
+						<a class="dropdown-item nav-link-dropcolor nav-link-dropdown" href="#">쪽지함</a>
+						<c:if test="${Admin eq 1 }">
+							<a class="dropdown-item nav-link-dropcolor nav-link-dropdown" href="trainerList">트레이너 리스트 보기</a>
+							<a class="dropdown-item nav-link-dropcolor nav-link-dropdown" href="userList">회원 리스트 보기</a>
+						</c:if>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</nav>
