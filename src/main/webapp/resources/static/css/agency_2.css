@@ -1354,6 +1354,9 @@ text-align:center;
 	grid-row-start:2;
 	grid-row-end:3;
 }
+.tt {
+	margin-left: 195px;
+}
 
 
 
@@ -1408,6 +1411,10 @@ text-align:center;
 .content-boardView-comment {
 	display: inline;
 }
+.tt {
+	margin-left: auto;
+}
+
 
 }
 

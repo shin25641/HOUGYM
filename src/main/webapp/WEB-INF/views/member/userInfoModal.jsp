@@ -14,7 +14,7 @@
       
       	<div class="col mb-4">
    			<div class="card">
-      		<img src="resources/static/img/main-profile.png" class="card-img-top" alt="...">
+      		<img src="resources/static/img/1122.jpg" class="card-img-top" alt="...">
       		<div class="card-body">
 					<span style="font-family:dohyun; font-size: 1.25em;">이름 : </span><input class="form-info_2 white_textbox" type="text" style="width: 64%;"><br>
 					<span style="font-family:dohyun; font-size: 1.25em;">아이디 : </span><input class="form-info_1 white_textbox" type="text" readonly="readonly" style="width: 64%;"><br>
@@ -49,7 +49,7 @@
       
       	<div class="col mb-4">
    			<div class="card">
-      		<img src="resources/static/img/main-profile.png" class="card-img-top" alt="...">
+      		<img src="resources/static/img/2233.jpg" class="card-img-top" alt="...">
       		<div class="card-body">
 					<span style="font-family:dohyun; font-size: 1.25em;">이름 : </span><input class="form-info_2 white_textbox" type="text" style="width: 64%;"><br>
 					<span style="font-family:dohyun; font-size: 1.25em;">아이디 : </span><input class="form-info_1 white_textbox" type="text" readonly="readonly" style="width: 64%;"><br>
