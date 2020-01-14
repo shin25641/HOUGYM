@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.health.dto.exBoardDTO;
+import com.health.dto.exBoardSDTO;
 @Component
 public class exBoardDAO {
 	private static final String namespace="com.health.mybatis.myMapper";
@@ -37,5 +38,13 @@ public int getTotalPage() {
 	return sqlSession.selectOne(namespace + ".exBoardgetTotalPage");
 	
 }
-
+public int exBoardS_modify(exBoardSDTO dto) {
+	return sqlSession.update(namespace+".exboardSmodify",dto);
+}
+public int exBoardS_write(exBoardSDTO dto) {
+	return sqlSession.insert(namespace+".exboardSwrite",dto);
+}
+public List<exBoardSDTO> exSlist(){
+	return sqlSession.selectList(namespace+".exSlist");
+}
 }

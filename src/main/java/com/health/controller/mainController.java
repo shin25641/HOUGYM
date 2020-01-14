@@ -340,7 +340,27 @@ public class mainController {
 			eboard.execute(model);
 			return "redirect:ex";
 		}
-	   
+	   @RequestMapping("exS")
+	   public String exS(HttpServletRequest request, Model model) {
+		   eboard = (exBoardService)applicationContext.getBean("exBoardSListServiceImpl");
+		   eboard.execute(model);
+		   
+		   return "ex/exSide/exSPage";
+	   }
+	   @RequestMapping(value="/exboardS_modify", method=RequestMethod.POST)
+		public String exboardS_modify(HttpServletRequest request,Model model){
+			model.addAttribute("request",request);
+			eboard = (exBoardService) applicationContext.getBean("exBoardSModifyServiceImpl");
+			eboard.execute(model);
+			return "redirect:exS";
+		}
+	   @RequestMapping(value="/exboardS_write", method=RequestMethod.POST)
+	 		public String exboardS_write(HttpServletRequest request,Model model){
+	 			model.addAttribute("request",request);
+	 			eboard = (exBoardService) applicationContext.getBean("exBoardSSaveServiceImpl");
+	 			eboard.execute(model);
+	 			return "redirect:exS";
+	 		}
 	// ===================게시판======================
 	   @RequestMapping("board")
 	   public String board(Model model, HttpServletRequest request) {

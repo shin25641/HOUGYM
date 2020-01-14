@@ -141,6 +141,17 @@
 	update exBoard set title=#{title}, content=#{content}, link=#{link},part=#{part} where num=#{num}
 	</update>
 	 
+	 <update id="exboardSmodify" parameterType="ESdto">
+	update exBoardSV set link=#{exSLink} where part=#{exSPart}
+	</update>
+	 
+	 <insert id="exboardSwrite" parameterType="ESdto">
+		insert into exBoardSV(part,link) values(#{exSPart},#{exSLink})
+	</insert>
+	
+	<select id="exSlist" resultType="ESdto">
+		select * from exBoardSV
+	</select>
     <!-- ==============게시판============== -->
 	<select id="boardList" parameterType="Pdto" resultType="Bdto">
   		 select B.* from(select rownum rn, A.* from (select * from board order by num desc)A)B where rn between #{startPage} and #{endPage}
