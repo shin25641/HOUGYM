@@ -16,9 +16,13 @@
 				</div>
 				<div class="carousel-item">
 					<img src="resources/static/img/메인사진2.png" class="d-block w-100" alt="test2">
+					<button type="button" class="btn btn-primary content-btn2" onclick="return location.href='ticketView'">클릭</button>
+					
 				</div>
 				<div class="carousel-item">
 					<img src="resources/static/img/메인사진3.png" class="d-block w-100" alt="test3">
+					<button type="button" class="btn btn-primary content-btn" onclick="return location.href='board'">클릭</button>
+					
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#mycarousel"

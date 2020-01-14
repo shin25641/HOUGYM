@@ -1354,17 +1354,23 @@ text-align:center;
 	grid-row-start:2;
 	grid-row-end:3;
 }
-.tt {
+.tttt {
 	margin-left: 195px;
+}
+.content-btn2 {
+	position: absolute;
+    top: 62%;
+    left: 46%;
+    background-color: #ff6000;
+    border-color: #ff6000;
+	
 }
 
 
-
-
-
-
-
 @media (max-width: 580px) {
+.tttt {
+	margin-left: auto;
+}
 .content-locker {
     grid-column-start: 1;
     grid-row-start: 2;
@@ -1411,9 +1417,7 @@ text-align:center;
 .content-boardView-comment {
 	display: inline;
 }
-.tt {
-	margin-left: auto;
-}
+
 
 
 }
