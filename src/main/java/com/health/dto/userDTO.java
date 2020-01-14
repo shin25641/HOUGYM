@@ -14,6 +14,7 @@ public class userDTO {
 	private int userWeight;
 	private String userSex;
 	private int Admin;
+	private int ticket;
 	
 @Override
 	public String toString() {
@@ -25,9 +26,22 @@ public class userDTO {
 //	private String userPurpose;
 	
 	
+
+	public int getTicket() {
+		return ticket;
+	}
+	
+	public void setTicket(int ticket) {
+		this.ticket = ticket;
+	}
 	public String getUserId() {
 		return userId;
 	}
+	
+
+
+
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
@@ -97,4 +111,6 @@ public class userDTO {
 	public void setAdmin(int admin) {
 		Admin = admin;
 	}
+
+
 }
