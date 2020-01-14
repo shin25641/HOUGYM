@@ -21,7 +21,7 @@
 				</div>
 				<div class="carousel-item">
 					<img src="resources/static/img/메인사진3.png" class="d-block w-100" alt="test3">
-					<button type="button" class="btn btn-primary content-btn" onclick="return location.href='board'">클릭</button>
+					<button type="button" class="btn btn-primary content-btn3" onclick="return location.href='board'">클릭</button>
 					
 				</div>
 			</div>

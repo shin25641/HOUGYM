@@ -1365,6 +1365,18 @@ text-align:center;
     border-color: #ff6000;
 	
 }
+.content-btn3 {
+	position: absolute;
+    top: 49%;
+    left: 83%;
+    background-color: #ff6000;
+    border-color: #ff6000;
+	
+}
+
+
+
+
 
 
 @media (max-width: 580px) {
