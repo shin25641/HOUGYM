@@ -15,14 +15,11 @@
 				  <li class="nav-item nav-link-action">
 				    <a class="nav-link" href="ex" style="color:white; background-color: #111111;">부위별 운동법</a>
 				  </li>
-				  <li class="nav-item nav-link-action">
-				    <a class="nav-link" href="#" style="color:white; background-color: #111111;" >계절별 운동법</a>
-				  </li>
-				  <li class="nav-item nav-link-action">
-				    <a class="nav-link" href="#" style="color:white; background-color: #111111;">스트레칭</a>
+				   <li class="nav-item nav-link-action">
+				    <a class="nav-link" href="exS" style="color:white; background-color: #111111;">스트레칭</a>
 				  </li>
 				  <li class="nav-item nav-link-action" >
-					<a class="nav-link" href="#" style="color:white; background-color: #111111;">홈트레이닝</a>
+					<a class="nav-link" href="board" style="color:white; background-color: #111111;">게시판</a>
 			  	  </li>
 				</ul>
 			</div>
